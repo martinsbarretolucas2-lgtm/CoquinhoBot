@@ -17,11 +17,10 @@ const client = new Client({
     ]
 });
 
-// --- SISTEMA DE MÚSICA (DisTube) ---
 const distube = new DisTube(client, {
     emitNewSongOnly: true,
     leaveOnFinish: false,
-    plugins: [new YouTubeDLPlugin()]
+    plugins: [new YouTubeDLPlugin()] // Garanta que está exatamente assim
 });
 
 // --- SISTEMA DE IA (Gemini) ---

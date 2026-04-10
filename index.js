@@ -21,8 +21,6 @@ const distube = new DisTube(client, {
     leaveOnFinish: false,
     plugins: [new YouTubeDLPlugin()]
 });
-
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_KEY);
 const modelIA = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 const app = express();

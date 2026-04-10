@@ -16,7 +16,6 @@ const client = new Client({
     ]
 });
 
-// Correção do Plugin aqui:
 const distube = new DisTube(client, {
     emitNewSongOnly: true,
     leaveOnFinish: false,
@@ -46,8 +45,12 @@ client.on('messageCreate', async (message) => {
     
     if (message.mentions.has(client.user)) {
         const prompt = message.content.replace(/<@!\d+>|<@\d+>/g, '').trim();
-        const result = await modelIA.generateContent(prompt || "Oi");
-        message.reply(result.response.text().slice(0, 2000));
+        try {
+            const result = await modelIA.generateContent(prompt || "Oi");
+            message.reply(result.response.text().slice(0, 2000));
+        } catch (e) {
+            message.reply("Erro na IA, mas estou online!");
+        }
     }
 });
 
